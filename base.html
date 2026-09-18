@@ -1,464 +1,919 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initioal-scale=1.0">
-    <title>Document</title>
-    <!-----css file----->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/skins/color-1.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"> 
-    <!----style switcher-->
-    <link ref="stylesheet" href="css/skins/color-1.css" class="alternate-style" title="color-1" disabled>
-    <link ref="stylesheet" href="css/skins/color-2.css" class="alternate-style" title="color-2" disabled>
-    <link ref="stylesheet" href="css/skins/color-3.css" class="alternate-style" title="color-3" disabled>
-    <link ref="stylesheet" href="css/skins/color-4.css" class="alternate-style" title="color-4" disabled>
-    <link ref="stylesheet" href="css/skins/color-5.css" class="alternate-style" title="color-5" disabled>
-    <link ref="stylesheet" href="css/style-switcher.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roopa V N — Backend Developer / DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F5F7FA; --bg-1: #ECF0F4;
+    --panel: rgba(255,255,255,0.65);
+    --panel-solid: #FFFFFF;
+    --panel-2: #EEF2F6;
+    --text: #16222C; --text-muted: #51667A; --text-faint: #8597A8;
+    --accent: #C9781A; --accent-soft: rgba(201,120,26,0.10);
+    --accent-2: #0E8477; --accent-2-soft: rgba(14,132,119,0.10);
+    --line: rgba(22,34,44,0.09); --line-2: rgba(22,34,44,0.18);
+    --glow-a: rgba(201,120,26,0.14); --glow-b: rgba(14,132,119,0.12);
+    --shadow: 0 24px 60px rgba(20,30,40,0.10);
+    --shadow-sm: 0 8px 24px rgba(20,30,40,0.08);
+    --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --radius-lg: 20px; --radius-md: 14px; --radius-sm: 9px;
+  }
+  :root[data-theme="daylight"]{
+    --bg: #F3F5F8; --bg-1: #E9EDF2;
+    --panel: rgba(255,255,255,0.7);
+    --panel-solid: #FFFFFF; --panel-2: #EEF2F5;
+    --text: #16222C; --text-muted: #51667A; --text-faint: #8597A8;
+    --accent: #2A5CD0; --accent-soft: rgba(42,92,208,0.10);
+    --accent-2: #0E8477; --accent-2-soft: rgba(14,132,119,0.10);
+    --line: rgba(22,34,44,0.09); --line-2: rgba(22,34,44,0.18);
+    --glow-a: rgba(42,92,208,0.14); --glow-b: rgba(14,132,119,0.12);
+    --shadow: 0 24px 60px rgba(20,30,40,0.10);
+    --shadow-sm: 0 8px 24px rgba(20,30,40,0.08);
+  }
+  :root[data-theme="terminal"]{
+    --bg: #F5F7F3; --bg-1: #ECF0E8;
+    --panel: rgba(255,255,255,0.7);
+    --panel-solid: #FFFFFF; --panel-2: #EBF0E9;
+    --text: #16241A; --text-muted: #45644C; --text-faint: #7C9581;
+    --accent: #1E9E52; --accent-soft: rgba(30,158,82,0.10);
+    --accent-2: #0E7FAE; --accent-2-soft: rgba(14,127,174,0.10);
+    --line: rgba(22,36,26,0.09); --line-2: rgba(22,36,26,0.18);
+    --glow-a: rgba(30,158,82,0.14); --glow-b: rgba(14,127,174,0.12);
+    --shadow: 0 24px 60px rgba(20,35,25,0.10);
+    --shadow-sm: 0 8px 24px rgba(20,35,25,0.08);
+    --font: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  :root[data-theme="violet"]{
+    --bg: #F8F5FB; --bg-1: #EFEAF5;
+    --panel: rgba(255,255,255,0.7);
+    --panel-solid: #FFFFFF; --panel-2: #F1ECF7;
+    --text: #2A1B40; --text-muted: #6A5885; --text-faint: #9A8AB3;
+    --accent: #8A4FC7; --accent-soft: rgba(138,79,199,0.10);
+    --accent-2: #B8860B; --accent-2-soft: rgba(184,134,11,0.10);
+    --line: rgba(42,27,64,0.09); --line-2: rgba(42,27,64,0.18);
+    --glow-a: rgba(138,79,199,0.14); --glow-b: rgba(184,134,11,0.12);
+    --shadow: 0 24px 60px rgba(30,20,45,0.10);
+    --shadow-sm: 0 8px 24px rgba(30,20,45,0.08);
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme]){
+      --bg: #F5F7FA; --bg-1: #ECF0F4;
+      --panel: rgba(255,255,255,0.65);
+      --panel-solid: #FFFFFF; --panel-2: #EEF2F6;
+      --text: #16222C; --text-muted: #51667A; --text-faint: #8597A8;
+      --accent: #C9781A; --accent-soft: rgba(201,120,26,0.10);
+      --accent-2: #0E8477; --accent-2-soft: rgba(14,132,119,0.10);
+      --line: rgba(22,34,44,0.09); --line-2: rgba(22,34,44,0.18);
+      --glow-a: rgba(201,120,26,0.14); --glow-b: rgba(14,132,119,0.12);
+      --shadow: 0 24px 60px rgba(20,30,40,0.10);
+      --shadow-sm: 0 8px 24px rgba(20,30,40,0.08);
+    }
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(720px 420px at 12% -8%, var(--glow-a), transparent 60%),
+      radial-gradient(640px 420px at 100% 8%, var(--glow-b), transparent 55%),
+      var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .mono{ font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  a{ color: var(--accent); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+  ::selection{ background: var(--accent-soft); color: var(--text); }
+
+  .wrap{ max-width: 980px; margin: 0 auto; padding: 0 28px; }
+  @media (max-width: 560px){ .wrap{ padding: 0 20px; } }
+
+  /* ---------- Floating pill nav ---------- */
+  .navwrap{
+    position: sticky; top: 18px; z-index: 60;
+    display:flex; justify-content:center;
+    pointer-events:none;
+    padding: 0 20px;
+  }
+  .pillnav{
+    pointer-events:auto;
+    display:flex; align-items:center; gap: 4px;
+    background: var(--panel-solid);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(14px);
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .pillnav::-webkit-scrollbar{ display:none; }
+  .pillnav .mark{
+    font-family:"JetBrains Mono", monospace;
+    font-size: 12.5px; font-weight: 600;
+    padding: 8px 14px 8px 16px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .pillnav .mark span{ color: var(--accent); }
+  .pillnav a{
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 8px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  .pillnav a:hover{ text-decoration:none; color: var(--text); }
+  .pillnav a.active{ background: var(--accent-soft); color: var(--accent); }
+  @media (max-width: 640px){
+    .pillnav a:not(.mark){ font-size: 12.5px; padding: 7px 11px; }
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in{ opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 76px 0 56px; }
+  .hero-top{
+    display:grid; grid-template-columns: 1.35fr 1fr; gap: 44px; align-items: end;
+  }
+  @media (max-width: 780px){ .hero-top{ grid-template-columns: 1fr; } }
+  .kicker{
+    font-family:"JetBrains Mono", monospace; font-size: 13.5px;
+    color: var(--accent-2); margin: 0 0 16px; display:flex; align-items:center; gap:9px;
+  }
+  .kicker .dot{ width:7px; height:7px; border-radius:50%; background: var(--accent-2);
+    box-shadow: 0 0 0 0 var(--accent-2-soft); animation: pulse 2.4s ease-out infinite; }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 var(--accent-2-soft); }
+    70%{ box-shadow: 0 0 0 10px transparent; }
+    100%{ box-shadow: 0 0 0 0 transparent; }
+  }
+  @media (prefers-reduced-motion: reduce){ .kicker .dot{ animation:none; } }
+  h1{
+    font-size: clamp(42px, 6.4vw, 76px);
+    line-height: 0.98; letter-spacing: -0.02em; font-weight: 800;
+    margin: 0 0 22px;
+  }
+  .lede{ font-size: clamp(16px, 1.6vw, 18.5px); color: var(--text-muted); max-width: 52ch; margin: 0; }
+
+  .contact-pills{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 26px; }
+  .contact-pills a, .contact-pills span{
+    display:inline-flex; align-items:center; gap:7px;
+    font-size: 13.5px; color: var(--text-muted);
+    background: var(--panel); border: 1px solid var(--line);
+    padding: 8px 14px; border-radius: 999px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .contact-pills a:hover{ color: var(--text); border-color: var(--line-2); text-decoration:none; }
+  .contact-pills svg{ width:14px; height:14px; flex:none; }
+
+  /* bento stat card */
+  .bento{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  .bento-cell{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    backdrop-filter: blur(14px);
+  }
+  .bento-cell.wide{ grid-column: 1 / -1; }
+  .bento-cell.accent{
+    background: linear-gradient(160deg, var(--accent-soft), transparent 70%);
+    border-color: var(--line-2);
+  }
+  .bnum{ font-family:"JetBrains Mono", monospace; font-size: 26px; font-weight: 700; color: var(--text); }
+  .blabel{ font-size: 12px; color: var(--text-faint); margin-top: 3px; }
+  .status-row{ display:flex; align-items:center; gap:9px; font-family:"JetBrains Mono", monospace; font-size: 12.5px; color: var(--accent-2); }
+  .status-row .dot{ width:7px; height:7px; border-radius:50%; background: var(--accent-2); flex:none; }
+  .stack-chips{ display:flex; flex-wrap:wrap; gap: 6px; margin-top: 10px; }
+  .chip{
+    font-family:"JetBrains Mono", monospace; font-size: 11px;
+    padding: 5px 9px; border-radius: 999px;
+    border: 1px solid var(--line-2); color: var(--text-muted);
+    background: var(--panel-2); white-space: nowrap;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 64px 0; border-top: 1px solid var(--line); position: relative; }
+  section:first-of-type{ border-top: none; }
+
+  #summary{ border-top: 4px solid color-mix(in srgb, var(--accent-2) 70%, var(--line)); background: radial-gradient(1000px 320px at 0% 0%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 72%); }
+  #experience{ border-top: 4px solid color-mix(in srgb, var(--accent) 70%, var(--line)); background: radial-gradient(1000px 320px at 100% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 72%); }
+  #projects{ border-top: 4px solid var(--line-2); background: var(--panel-2); }
+  #stack{
+    border-top: 4px solid color-mix(in srgb, var(--accent-2) 70%, var(--line));
+    background-color: color-mix(in srgb, var(--accent-2) 4%, transparent);
+    background-image: radial-gradient(var(--line-2) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+  }
+  #ai{ border-top: 4px solid color-mix(in srgb, var(--accent) 70%, var(--line)); background: radial-gradient(1000px 320px at 0% 100%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 72%); }
+  footer{ border-top: 4px solid var(--line-2); background: radial-gradient(1000px 360px at 50% 0%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 72%); }
+
+  .section-icon{
+    width: 42px; height:42px; flex: none;
+    border-radius: 12px;
+    background: var(--panel-solid);
+    border: 1px solid var(--line-2);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .section-icon svg{ width:20px; height:20px; stroke: var(--accent); fill:none; stroke-width:1.8; }
+  #experience .section-icon svg, #stack .section-icon svg{ stroke: var(--accent-2); }
+
+  @keyframes blink{ 0%,45%{ opacity:1; } 50%,95%{ opacity:0; } 100%{ opacity:1; } }
+  .icon-blink{ animation: blink 1.4s steps(1) infinite; }
+
+  @keyframes orbit{ from{ transform: rotate(0deg);} to{ transform: rotate(360deg);} }
+  .icon-orbit{ transform-origin: 12px 12px; animation: orbit 4s linear infinite; }
+
+  @keyframes stagger-pulse{ 0%,100%{ opacity:0.35; } 50%{ opacity:1; } }
+  .icon-sq1{ animation: stagger-pulse 1.8s ease-in-out infinite; }
+  .icon-sq2{ animation: stagger-pulse 1.8s ease-in-out 0.3s infinite; }
+  .icon-sq3{ animation: stagger-pulse 1.8s ease-in-out 0.6s infinite; }
+  .icon-sq4{ animation: stagger-pulse 1.8s ease-in-out 0.9s infinite; }
+
+  @keyframes float-y{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-3px); } }
+  .icon-float{ animation: float-y 2.4s ease-in-out infinite; }
+  .icon-float.d2{ animation-delay: 0.25s; }
+  .icon-float.d3{ animation-delay: 0.5s; }
+
+  @keyframes sparkle-spin{ 0%,100%{ transform: rotate(0deg) scale(1); } 50%{ transform: rotate(20deg) scale(1.12); } }
+  .icon-sparkle{ transform-origin: 12px 12px; animation: sparkle-spin 2.6s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce){
+    .icon-blink, .icon-orbit, .icon-sq1, .icon-sq2, .icon-sq3, .icon-sq4, .icon-float, .icon-float.d2, .icon-float.d3, .icon-sparkle{
+      animation: none;
+    }
+  }
+
+  /* ---------- Section illustrations ---------- */
+  .section-head{ justify-content: space-between; }
+  .section-head-left{ display:flex; align-items:center; gap:14px; }
+  .section-visual{ flex: none; opacity: 0.9; }
+  @media (max-width: 820px){ .section-visual{ display:none; } }
+
+  .code-line{ animation: code-in 0.5s ease both; }
+  @keyframes code-in{ from{ opacity:0; transform: scaleX(0); } to{ opacity:1; transform: scaleX(1); } }
+  .code-line{ transform-origin: left; }
+  .cursor-blink{ animation: blink 1.1s steps(1) infinite; }
+
+  .flow-dot{ animation: flow-move 3.2s linear infinite; }
+  @keyframes flow-move{
+    0%{ offset-distance: 0%; opacity: 0; }
+    8%{ opacity: 1; }
+    92%{ opacity: 1; }
+    100%{ offset-distance: 100%; opacity: 0; }
+  }
+
+  .node-pulse{ animation: node-pulse-kf 2.2s ease-in-out infinite; }
+  @keyframes node-pulse-kf{ 0%,100%{ r:3; opacity:0.7; } 50%{ r:4.6; opacity:1; } }
+  .node-pulse.d2{ animation-delay: 0.4s; }
+  .node-pulse.d3{ animation-delay: 0.8s; }
+  .node-pulse.d4{ animation-delay: 1.2s; }
+
+  .layer-glow{ animation: layer-glow-kf 3s ease-in-out infinite; }
+  @keyframes layer-glow-kf{ 0%,100%{ opacity:0.5; } 50%{ opacity:1; } }
+  .layer-glow.d2{ animation-delay: 0.5s; }
+  .layer-glow.d3{ animation-delay: 1s; }
+
+  @media (prefers-reduced-motion: reduce){
+    .code-line, .cursor-blink, .flow-dot, .node-pulse, .layer-glow{ animation: none; opacity: 1; }
+  }
+  .section-head{ display:flex; align-items:center; gap: 14px; margin-bottom: 30px; }
+  .section-num{ font-family:"JetBrains Mono", monospace; font-size: 13px; color: var(--text-faint); }
+  h2{ font-size: clamp(24px, 3vw, 30px); font-weight: 800; letter-spacing: -0.01em; margin: 0; }
+  .section-note{ color: var(--text-muted); font-size: 15px; max-width: 62ch; margin: -14px 0 28px; }
+
+  /* ---------- Summary ---------- */
+  .summary-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+  @media (max-width: 720px){ .summary-grid{ grid-template-columns: 1fr; } }
+  .summary-grid p{ font-size: 16px; color: var(--text-muted); margin: 0 0 16px; }
+  .summary-grid strong{ color: var(--text); font-weight: 700; }
+
+  /* ---------- Experience timeline ---------- */
+  .tl-item{
+    position: relative; padding: 26px 26px 26px 30px;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius-md); margin-bottom: 16px;
+    backdrop-filter: blur(14px);
+  }
+  .tl-item::before{
+    content:""; position:absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--accent); border-radius: 3px 0 0 3px;
+  }
+  .tl-item.alt::before{ background: var(--accent-2); }
+  .tl-head{ display:flex; justify-content:space-between; flex-wrap:wrap; gap: 8px; margin-bottom: 4px; }
+  .tl-date{ font-family:"JetBrains Mono", monospace; font-size: 12.5px; color: var(--accent); }
+  .tl-item.alt .tl-date{ color: var(--accent-2); }
+  .tl-role{ font-size: 19px; font-weight: 700; margin: 4px 0 2px; }
+  .tl-company{ color: var(--text-muted); font-size: 14.5px; margin-bottom: 16px; }
+  .tl-item ul{ margin: 0 0 14px; padding-left: 19px; }
+  .tl-item li{ color: var(--text-muted); font-size: 14.5px; margin-bottom: 7px; }
+  .env-line{ font-size: 12.5px; color: var(--text-faint); padding-top: 12px; border-top: 1px dashed var(--line); }
+  .env-line b{ color: var(--text-muted); font-weight: 600; }
+
+  /* ---------- Projects ---------- */
+  .project-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px){ .project-grid{ grid-template-columns: 1fr; } }
+  .project{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 24px 24px;
+    backdrop-filter: blur(14px);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .project:hover{ transform: translateY(-4px); border-color: var(--line-2); box-shadow: var(--shadow-sm); }
+  .project-top{ display:flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 4px; }
+  .project-title{ font-size: 17px; font-weight: 700; }
+  .org-tag{
+    font-family:"JetBrains Mono", monospace; font-size: 10.5px;
+    color: var(--text-faint); white-space: nowrap;
+    border: 1px solid var(--line); padding: 3px 8px; border-radius: 999px;
+    margin-top: 2px;
+  }
+  .project-role{ font-size: 12.5px; color: var(--accent); margin-bottom: 12px; font-family:"JetBrains Mono", monospace; }
+  .project-desc{ font-size: 14px; color: var(--text-muted); margin-bottom: 14px; }
+  .project ul{ margin: 0 0 16px; padding-left: 18px; }
+  .project li{ font-size: 13.5px; color: var(--text-muted); margin-bottom: 6px; }
+  .project .stack-chips{ margin-top: 2px; }
+
+  /* ---------- Stack ---------- */
+  .stack-card-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 820px){ .stack-card-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px){ .stack-card-grid{ grid-template-columns: 1fr; } }
+  .stack-card{
+    background: var(--panel-solid);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 20px 20px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .stack-card:hover{ transform: translateY(-3px); border-color: var(--line-2); }
+  .stack-card::before{
+    content:"";
+    position:absolute; top:0; left:0; right:0; height: 3px;
+    background: var(--card-accent, var(--accent));
+  }
+  .stack-card-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom: 14px; }
+  .stack-card-title{ font-family:"JetBrains Mono", monospace; font-size: 11.5px; letter-spacing:0.03em; color: var(--text-faint); text-transform: uppercase; }
+  .stack-card-count{
+    font-family:"JetBrains Mono", monospace; font-size: 11px;
+    color: var(--card-accent, var(--accent));
+    background: var(--panel-2); border-radius: 999px; padding: 2px 8px;
+  }
+  .stack-card .stack-chips{ margin-top: 0; }
+  .stack-card .chip{ background: var(--panel-2); }
+
+  /* ---------- AI panel ---------- */
+  .ai-panel{
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius-lg); padding: 30px 32px;
+    backdrop-filter: blur(14px);
+  }
+  .ai-panel ul{ margin: 16px 0 0; padding-left: 19px; columns: 2; column-gap: 32px; }
+  @media (max-width: 700px){ .ai-panel ul{ columns: 1; } }
+  .ai-panel li{ color: var(--text-muted); font-size: 14.5px; margin-bottom: 12px; break-inside: avoid; }
+
+  /* ---------- Footer / contact ---------- */
+  footer{ padding: 60px 0 90px; }
+  .cta-card{
+    background: linear-gradient(160deg, var(--accent-soft), var(--panel) 60%);
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius-lg);
+    padding: 44px 40px;
+    text-align:center;
+  }
+  @media (max-width: 560px){ .cta-card{ padding: 34px 22px; } }
+  .cta-card h3{ font-size: clamp(22px,3vw,30px); margin: 0 0 12px; font-weight: 800; letter-spacing:-0.01em; }
+  .cta-card p{ color: var(--text-muted); margin: 0 0 26px; font-size: 15.5px; }
+  .cta-links{ display:flex; flex-wrap:wrap; justify-content:center; gap: 12px; }
+  .cta-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size: 14.5px; font-weight: 600;
+    padding: 12px 22px; border-radius: 999px;
+    background: var(--accent); color: var(--bg);
+  }
+  .cta-btn:hover{ text-decoration:none; opacity: 0.9; }
+  .cta-btn.ghost{ background: transparent; border: 1px solid var(--line-2); color: var(--text); }
+  .cta-btn svg{ width:15px; height:15px; }
+  .foot-meta{
+    margin-top: 34px; display:flex; justify-content:space-between; flex-wrap:wrap; gap: 12px;
+    font-size: 13px; color: var(--text-faint);
+  }
+
+  /* ---------- Floating theme switcher ---------- */
+  .theme-switch{
+    position: fixed; right: 20px; bottom: 20px; z-index: 70;
+    display:flex; flex-direction:column; gap: 6px;
+    background: var(--panel-solid);
+    border: 1px solid var(--line-2);
+    border-radius: 16px; padding: 10px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(16px);
+  }
+  .theme-switch-label{ font-family:"JetBrains Mono", monospace; font-size: 10px; color: var(--text-faint); padding: 0 4px 2px; }
+  .theme-switch-row{ display:flex; gap: 5px; }
+  .theme-switch button{
+    font-family: "Inter", sans-serif; font-size: 12.5px;
+    padding: 8px 12px; border-radius: 10px; border: 1px solid transparent;
+    background: var(--panel-2); color: var(--text-muted); cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .theme-switch button:hover{ color: var(--text); border-color: var(--line-2); }
+  .theme-switch button.active{ background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+  @media (max-width: 560px){
+    .theme-switch{ right: 12px; bottom: 12px; padding: 8px; }
+    .theme-switch button{ padding: 7px 9px; font-size: 11.5px; }
+  }
+</style>
 </head>
 <body>
-    <!----main container start-->
-    <div class="main-container">
-        <!----Aside start---->
-        <div class="aside">
-            <div class="logo">
-                <a href="#"><span>A</span>tlas</a>
-            </div>
-            <div class="nav-taggler">
-                <span></span>
-            </div>
-            <ul class="nav">
-                <li><a href="#home" class="active"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#about"><i class="fa fa-user"></i> About</a></li>
-                <li><a href="#services"><i class="fa fa-list"></i>Services</a></li>
-                <li><a href="#portfolio"><i class="fa fa-briefcase"></i>Portfolio</a></li>
-                <li><a href="#contact"><i class="fa fa-comments"></i>Contact</a></li>
-            </ul>
+
+<div class="navwrap">
+  <nav class="pillnav" aria-label="Section navigation">
+    <span class="mark">ROOPA<span>.</span>DEV</span>
+    <a href="#summary" data-nav>Summary</a>
+    <a href="#experience" data-nav>Experience</a>
+    <a href="#projects" data-nav>Projects</a>
+    <a href="#stack" data-nav>Stack</a>
+    <a href="#contact" data-nav>Contact</a>
+  </nav>
+</div>
+
+<div class="wrap">
+
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-top">
+      <div class="reveal in">
+        <p class="kicker"><span class="dot"></span> Backend Developer / DevOps Engineer</p>
+        <h1>Roopa V N</h1>
+        <p class="lede">I build Django backends and run them on Azure — the APIs, the pipelines that ship them, and the monitoring that keeps them healthy in production.</p>
+        <div class="contact-pills">
+          <a href="mailto:roopanareppa@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+            roopanareppa@gmail.com
+          </a>
+          <a href="tel:+917892704447">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.7 2z"/></svg>
+            +91 7892704447
+          </a>
+          <a href="https://linkedin.com/in/roopa-nareppa-79a8b7202" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Bangalore, India
+          </span>
         </div>
-        <!----Aside Ends---->
-        <!----Main content starts---->
-        <div class="main-content">
-            <!-----Home section starts---->
-            <section class="home section" id="home">
-                <div class="container">
-                    <div class="row">
-                        <div class="home-info padd-15">
-                          <h3 class="hello">Hello, my name is <span class="name">Roopa V N</span></h3>
-                          <h3 class="my-profession">I'm a <span class="typing">web developer</span></h3>
-                          <p>I'm a web application developer with extensive experience for over 3+ years.
-                              My expertise is to create and website design and many more..
-                          </p>
-                          <a href="#contact" class="btn hire-me">Hire Me</a>
-                        </div>
-                        <div class="home-img padd-15">
-                            <img src="images/roopa2.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!------Home section ends----->
-            <!---about section start--->
-            <section class="about section" id="about">
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title padd-15">
-                            <h2>About Me</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="about-content padd-15">
-                            <div class="row">
-                                <div class="about-text padd-15">
-                                    <h3>I'm Roopa and <span>Web Application developer</span></h3>
-                                    <p>Writing well designed, testable, efficient code by using best software development practices.
-                                        Creating website layout/user interfaces by using standard HTML and CSS practices.
-                                        Integrating data from various back-end services and databases.
-                                        Developed user-friendly e-commerce websites leading to improved user clicks by 50% and subsequent purchases by 30%.</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="personal-info padd-15">
-                                    <div class="row">
-                                        <div class="info-item padd-15">
-                                            <p>Birthday : <span>06 Dec 1998</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>Age : <span>23</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>Degree : <span>BSc</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>Email : <span>roopanareppa@gmail.com</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>Mobile : <span>+91 78927 04447</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>Freelance : <span>Available</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>City : <span>Bangalore, India</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>Linkedin : <span>www.linkedin.com/in/roopa-v-n</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="buttons padd-15">
-                                            <a target="_blank" href="rooparesumevvm.pdf" lass="btn hire-me">Download Resume</a></p>
-                                            <a href="#contact" class="btn hire-me">Hire Me</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="skills padd-15">
-                                    <div class="skill-item padd-15">
-                                        <h5>Python</h5>
-                                        <div class="progress">
-                                            <div class="progress-in" style="width: 82%;"></div>
-                                            <div class="skill-percentage">82%</div>
-                                        </div>
-                                    </div>
-                                    <div class="skill-item padd-15">
-                                        <h5>Django</h5>
-                                        <div class="progress">
-                                            <div class="progress-in" style="width: 66%;"></div>
-                                            <div class="skill-percentage">66%</div>
-                                        </div>
-                                    </div>
-                                    <div class="skill-item padd-15">
-                                        <h5>CSS</h5>
-                                        <div class="progress">
-                                            <div class="progress-in" style="width: 74%;"></div>
-                                            <div class="skill-percentage">74%</div>
-                                        </div>
-                                    </div>
-                                    <div class="skill-item padd-15">
-                                        <h5>HTML</h5>
-                                        <div class="progress">
-                                            <div class="progress-in" style="width: 76%;"></div>
-                                            <div class="skill-percentage">76%</div>
-                                        </div>
-                                    </div>
-                                    <div class="skill-item padd-15">
-                                        <h5>MySQL</h5>
-                                        <div class="progress">
-                                            <div class="progress-in" style="width: 60%;"></div>
-                                            <div class="skill-percentage">60%</div>
-                                        </div>
-                                    </div>
-                                    <div class="skill-item padd-15">
-                                        <h5>DRF</h5>
-                                        <div class="progress">
-                                            <div class="progress-in" style="width: 66%;"></div>
-                                            <div class="skill-percentage">66%</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="row">
-                            <div class="education padd-15">
-                                <h3 class="title">Education</h3>
-                                <div class="row">
-                                    <div class="timline-box padd-15">
-                                        <div class="timeline shadow-dark">
-                                            <!--timeline item-->
-                                            <div class="timeline-item">
-                                                <div class="circle-dot"></div>
-                                                <h3 class="timeline-date">
-                                                    <i class="fa fa-calender"></i>2016 - 2019
-                                                </h3>
-                                                <h4 class="timeline-title">Bachelor of Science</h4>
-                                                <p>Physics,Chemistry and Mathematics</p>
-                                            </div>
-                                            <!--timeline item-->
-                                            <div class="timeline-item">
-                                                <div class="circle-dot"></div>
-                                                <h3 class="timeline-date">
-                                                    <i class="fa fa-calender"></i>2014 - 2016
-                                                </h3>
-                                                <h4 class="timeline-title">Intermediate</h4>
-                                                <p>Physics, Chemistry, Mathematics and Biology</p>
-                                            </div>
-                                            <!--timeline item-->
-                                            <div class="timeline-item">
-                                                <div class="circle-dot"></div>
-                                                <h3 class="timeline-date">
-                                                    <i class="fa fa-calender"></i>2013 - 2014
-                                                </h3>
-                                                <h4 class="timeline-title">SSC</h4>
-                                                <p>Karnataka State Board</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="experience padd-15">
-                                <h3 class="title padd-15">Experience</h3>
-                                <div class="row">
-                                    <div class="timline-box padd-15">
-                                        <div class="timeline shadow-dark">
-                                            <!--timeline item-->
-                                            <div class="timeline-item">
-                                                <div class="circle-dot"></div>
-                                                <h3 class="timeline-date">
-                                                    <i class="fa fa-calender"></i>2020 - till date
-                                                </h3>
-                                                <h4 class="timeline-title">Software Engineer</h4>
-                                                <p>VVM Soft Solution Pvt Ltd.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </section>
-            <!----about section ends-->
-            <!----service section start---->
-            <section class="service section" id="sevices">
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title padd-15">
-                            <h2>Services</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!--service item start-->
-                        <div class="service-item padd-15">
-                            <div class="service-item-inner">
-                                <div class="icon">
-                                    <i class="fa fa-laptop"></i>
-                                </div>
-                                <h4>Pytho Development</h4>
-                                <p>
-                                    Writing well designed, testable, efficient code by using best software development practices.
-                                </p>
-                            </div>
-                        </div>
-                        <!-- service ite end-->
-                        <!--service item start-->
-                        <div class="service-item padd-15">
-                            <div class="service-item-inner">
-                                <div class="icon">
-                                    <i class="fa fa-clone"></i>
-                                </div>
-                                <h4>Web Application Dvelopment</h4>
-                                <p>
-                                    Integrating data from various back-end services and databases.
-                                    Developed user-friendly e-commerce websites leading to improved user clicks by 50% and subsequent purchases by 30%.
-                                </p>
-                            </div>
-                        </div>
-                        <!-- service ite end-->
-                        <!--service item start-->
-                        <div class="service-item padd-15">
-                            <div class="service-item-inner">
-                                <div class="icon">
-                                    <i class="fa fa-database"></i>
-                                </div>
-                                <h4>Backend Development</h4>
-                                <p>
-                                    Experience in writing re-usable unit test documents.
-                                    Skilled in performance tuning, query plan / explain plan analysis, indexing, table partitioning
-                                    Exceptional knowledge of Database technologies - MySQL, PostgressSQL.
-                                </p>
-                            </div>
-                        </div>
-                        <!-- service ite end-->
-                        <!--service item start-->
-                        <div class="service-item padd-15">
-                            <div class="service-item-inner">
-                                <div class="icon">
-                                    <i class="fa fa-cubes"></i>
-                                </div>
-                                <h4>Web Design</h4>
-                                <p>
-                                    Writing well designed, testable, efficient code by using best software development practices.
-                                    Creating website layout/user interfaces by using standard HTML and CSS practices.
-                                </p>
-                            </div>
-                        </div>
-                        <!-- service ite end-->
-                    </div>
-                </div>
-            </section>
-            <!--- service section end----->
-            <!----portfolio section start---->
-            <section class="portfolio section" id="portfolio">
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title padd-15">
-                            <h2>Portfolio</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="portfolio-heading padd-15">
-                            <h2>My Last Projects :</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-----portfolio item start---->
-                        <div class="portfolio-item-inner shadow-dark">
-                            <div class="portfolio-img">
-                                <img src="images/jiogames.jpg" alt="">
-                                <h3>Jiogames</h3>
-                            </div>
-                        </div>
-                        <div class="portfolio-item-inner shadow-dark">
-                            <div class="portfolio-img">
-                                <img src="images/portfolio/E-commerce.jpg" alt="">
-                                <h3>E-Commerce Web Application</h3>
-                            </div>
-                        </div>
-                        <!---- portfolio item end---->
-                    </div>
-                </div>
-            </section>
-            <!----portfolio  section end---->
-            <!----Contact  section start---->
-            <section class="contact section" id="contact">
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title padd-15">
-                            <h2>Contact Me</h2>
-                        </div>
-                    </div>
-                    <h3 class="contact-title padd-15">Have You Any Question..!</h3>
-                    <h4 class="contact-sub-title padd-15">I'M AT YOUR SERVICES</h4>        
-                    <div class="row">
-                        <!----contact info intem start-->
-                        <div class="contact-info-item padd-15">
-                            <div class="icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <h4>Call Us On</h4>
-                            <p>+91 7892704447</p>
-                        </div>
-                        <!-- contact info item end -->
-                        <!----contact info intem start-->
-                        <div class="contact-info-item padd-15">
-                            <div class="icon">
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                            <h4>Email</h4>
-                            <p>roopanareppa@gmail.com</p>
-                        </div>
-                        <!-- contact info item end -->
-                        <!----contact info intem start-->
-                        <div class="contact-info-item padd-15">
-                            <div class="icon">
-                                <i class="fa fa-map-marker-alt"></i>
-                            </div>
-                            <h4>Office</h4>
-                            <p>Chennai</p>
-                        </div>
-                        <!-- contact info item end -->
-                        <!----contact info intem start-->
-                        
-                        <!-- contact info item end -->
-                    </div>   
-                    <h3 class="contact-title padd-15">SEND ME AN EMAIL</h3>
-                    <h4 class="contact-sub-title padd-15">I'M VERY RESPONSIVE TO MESSAGES</h4>
-                    <!----contact form---->
-                    <div class="row">
-                        <div class="contact-form padd-15">
-                            <div class="row">
-                                <div class="form-item col-6 padd-15">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="form-item col-6 padd-15">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-item col-12 padd-15">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Subject">
-                                    </div>
-                                </div>
-                            </div>
-                            </div class="row">
-                                <div class="form-item col-10 padd-15">
-                                    <div class="form-group padd-15">
-                                        <textarea name="" class="form-control" id="" placeholder="Message"></textarea>
-                                    </div>
-                               </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-item col-12 padd-15">
-                                    <div class="form-group padd-15">
-                                    <button type="submit" class="btn">Send Message</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-                </div>
-            </section>
-            <!----Contact  section end---->
+      </div>
+
+      <div class="bento reveal in">
+        <div class="bento-cell wide accent">
+          <div class="status-row"><span class="dot"></span> open to new opportunities</div>
         </div>
-        <!----main content ends---->
+        <div class="bento-cell">
+          <div class="bnum">6+</div>
+          <div class="blabel">years experience</div>
+        </div>
+        <div class="bento-cell">
+          <div class="bnum">6</div>
+          <div class="blabel">systems shipped</div>
+        </div>
+        <div class="bento-cell wide">
+          <div class="blabel" style="margin-top:0;margin-bottom:8px;">current stack</div>
+          <div class="stack-chips">
+            <span class="chip">Python</span><span class="chip">Django</span><span class="chip">DRF</span>
+            <span class="chip">Celery</span><span class="chip">Azure</span><span class="chip">GitHub Actions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="summary">
+    <div class="section-head reveal">
+      <div class="section-head-left">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><line class="icon-blink" x1="7" y1="9" x2="7" y2="15"/><line x1="7" y1="9" x2="13" y2="9"/></svg>
+        </div>
+        <span class="section-num">01</span><h2>Summary</h2>
+      </div>
+      <svg class="section-visual" width="150" height="86" viewBox="0 0 150 86" fill="none">
+        <rect x="1" y="1" width="148" height="84" rx="10" fill="var(--panel-solid)" stroke="var(--line-2)"/>
+        <circle cx="14" cy="14" r="3" fill="var(--text-faint)"/>
+        <circle cx="24" cy="14" r="3" fill="var(--text-faint)"/>
+        <circle cx="34" cy="14" r="3" fill="var(--text-faint)"/>
+        <rect class="code-line" x="12" y="28" width="70" height="4" rx="2" fill="var(--accent-2)" style="animation-delay:0s"/>
+        <rect class="code-line" x="12" y="38" width="100" height="4" rx="2" fill="var(--line-2)" style="animation-delay:0.15s"/>
+        <rect class="code-line" x="24" y="48" width="80" height="4" rx="2" fill="var(--line-2)" style="animation-delay:0.3s"/>
+        <rect class="code-line" x="12" y="58" width="55" height="4" rx="2" fill="var(--accent)" style="animation-delay:0.45s"/>
+        <rect x="12" y="68" width="30" height="4" rx="2" fill="var(--line-2)"/>
+        <rect class="cursor-blink" x="44" y="67" width="4" height="6" fill="var(--accent-2)"/>
+      </svg>
+    </div>
+    <div class="summary-grid">
+      <p><strong>Backend Developer / DevOps Engineer with 6+ years of experience</strong> in Python backend development, REST API design, Azure cloud, CI/CD, application deployment, monitoring, troubleshooting, and performance optimization.</p>
+      <div>
+        <p>Strong hands-on experience with Python, Django, Django REST Framework, Celery, Redis, Azure App Service, GitHub Actions, Application Insights, Managed Identity, SQL Server, and MySQL.</p>
+        <p>Experienced across healthcare and e-commerce applications, production support, and application performance improvement — with a practical, security-conscious approach to AI-assisted development using ChatGPT and Claude.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head reveal">
+      <div class="section-head-left">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><g class="icon-orbit"><circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none" style="fill:var(--accent-2)"/></g></svg>
+        </div>
+        <span class="section-num">02</span><h2>Experience</h2>
+      </div>
+      <svg class="section-visual" width="170" height="86" viewBox="0 0 170 86" fill="none">
+        <path id="pipe-path" d="M14 66 C 50 66, 40 20, 76 20 S 120 66, 156 66" stroke="var(--line-2)" stroke-width="2" fill="none"/>
+        <circle cx="14" cy="66" r="5" fill="var(--accent)"/>
+        <circle class="node-pulse" cx="76" cy="20" r="5" fill="var(--panel-solid)" stroke="var(--accent-2)" stroke-width="2"/>
+        <circle class="node-pulse d2" cx="156" cy="66" r="5" fill="var(--accent-2)"/>
+        <text x="6" y="80" font-size="8" fill="var(--text-faint)" font-family="JetBrains Mono, monospace">2020</text>
+        <text x="142" y="80" font-size="8" fill="var(--text-faint)" font-family="JetBrains Mono, monospace">now</text>
+      </svg>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-head">
+        <div>
+          <div class="tl-date">Oct 2023 — Present</div>
+          <div class="tl-role">Senior Software Engineer / DevOps Engineer</div>
+        </div>
+      </div>
+      <div class="tl-company">OG Healthcare, Bangalore</div>
+      <ul>
+        <li>Develop and maintain backend applications using Python, Django, DRF, Celery, and Redis.</li>
+        <li>Deploy and manage healthcare applications on Azure App Service using GitHub Actions CI/CD pipelines.</li>
+        <li>Configure application settings, environment variables, and Azure resources; implement Managed Identity for secure access.</li>
+        <li>Monitor and troubleshoot using Application Insights, Log Stream, Kudu, and Azure diagnostics.</li>
+        <li>Work on API and database performance optimization, and application security improvements.</li>
+        <li>Support healthcare applications including SuperApp, DrugAssist, eSuite, and XR-Messaging.</li>
+      </ul>
+      <div class="env-line"><b>Environment:</b> Python, Django, DRF, Celery, Redis, Azure, Azure App Service, GitHub Actions, Application Insights, Managed Identity, SQL Server, Git, Linux</div>
+    </div>
+
+    <div class="tl-item alt reveal">
+      <div class="tl-head">
+        <div>
+          <div class="tl-date">Feb 2020 — Sep 2023</div>
+          <div class="tl-role">Software Developer</div>
+        </div>
+      </div>
+      <div class="tl-company">VVM Soft Solutions, Chennai</div>
+      <ul>
+        <li>Developed web applications and REST APIs using Python, Django, and Django REST Framework.</li>
+        <li>Worked with MySQL, Django ORM, and Python database connectivity.</li>
+        <li>Integrated third-party APIs and Stripe Payment Gateway.</li>
+        <li>Fixed bugs, optimized application performance, and supported production issues using Git, JIRA, and Agile practices.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head reveal">
+      <div class="section-head-left">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" stroke="none">
+            <rect class="icon-sq1" x="3" y="3" width="7" height="7" rx="1.5" fill="var(--accent)"/>
+            <rect class="icon-sq2" x="14" y="3" width="7" height="7" rx="1.5" fill="var(--accent)"/>
+            <rect class="icon-sq3" x="3" y="14" width="7" height="7" rx="1.5" fill="var(--accent)"/>
+            <rect class="icon-sq4" x="14" y="14" width="7" height="7" rx="1.5" fill="var(--accent)"/>
+          </svg>
+        </div>
+        <span class="section-num">03</span><h2>Projects</h2>
+      </div>
+      <svg class="section-visual" width="170" height="86" viewBox="0 0 170 86" fill="none">
+        <line x1="30" y1="20" x2="85" y2="43" stroke="var(--line-2)"/>
+        <line x1="85" y1="43" x2="140" y2="20" stroke="var(--line-2)"/>
+        <line x1="85" y1="43" x2="30" y2="66" stroke="var(--line-2)"/>
+        <line x1="85" y1="43" x2="140" y2="66" stroke="var(--line-2)"/>
+        <circle class="node-pulse" cx="85" cy="43" r="5" fill="var(--accent)"/>
+        <circle class="node-pulse d2" cx="30" cy="20" r="4" fill="var(--accent-2)"/>
+        <circle class="node-pulse d3" cx="140" cy="20" r="4" fill="var(--accent-2)"/>
+        <circle class="node-pulse d4" cx="30" cy="66" r="4" fill="var(--accent-2)"/>
+        <circle class="node-pulse" cx="140" cy="66" r="4" fill="var(--accent-2)"/>
+      </svg>
+    </div>
+    <p class="section-note reveal">Six systems across healthcare, gaming, and e-commerce — spanning backend development, cloud deployment, and production support.</p>
+    <div class="project-grid">
+
+      <div class="project reveal">
+        <div class="project-top">
+          <div class="project-title">eSuite — ATS & HRMS</div>
+          <div class="org-tag">OG Healthcare</div>
+        </div>
+        <div class="project-role">Backend Developer / DevOps Engineer</div>
+        <div class="project-desc">Applicant Tracking System and HRMS managing candidate registration, applications, interviews, internal job postings, and profile processing.</div>
+        <ul>
+          <li>Built backend features and REST APIs with Python, Django, and DRF across Candidate, Interview, and Job Posting modules.</li>
+          <li>Implemented async workflows (email, birthday cards, profile processing) with Celery and Redis.</li>
+          <li>Added PDF report generation via PDFShift and deployed to Azure App Service with GitHub Actions CI/CD.</li>
+        </ul>
+        <div class="stack-chips">
+          <span class="chip">Django</span><span class="chip">DRF</span><span class="chip">SQL Server</span><span class="chip">Angular</span><span class="chip">Celery</span>
+        </div>
+      </div>
+
+      <div class="project reveal">
+        <div class="project-top">
+          <div class="project-title">ClientApp</div>
+          <div class="org-tag">OG Healthcare</div>
+        </div>
+        <div class="project-role">DevOps Engineer</div>
+        <div class="project-desc">Healthcare application supporting client-facing workflows and healthcare-related services.</div>
+        <ul>
+          <li>Managed deployment to Azure App Service via GitHub Actions and configured CI/CD pipelines.</li>
+          <li>Used Application Insights and Managed Identity for monitoring and secure Azure access.</li>
+          <li>Investigated deployment, startup, and API issues; supported stability improvements.</li>
+        </ul>
+        <div class="stack-chips">
+          <span class="chip">Azure App Service</span><span class="chip">GitHub Actions</span><span class="chip">Managed Identity</span>
+        </div>
+      </div>
+
+      <div class="project reveal">
+        <div class="project-top">
+          <div class="project-title">DrugAssist</div>
+          <div class="org-tag">OG Healthcare</div>
+        </div>
+        <div class="project-role">DevOps Engineer</div>
+        <div class="project-desc">Provides drug, assistance-program, and eligibility information to support client workflows.</div>
+        <ul>
+          <li>Deployed and supported the app on Azure App Service with GitHub Actions CI/CD.</li>
+          <li>Monitored production with Application Insights; troubleshot API failures and memory issues.</li>
+          <li>Worked on API and database/query optimization, analyzing logs for root causes.</li>
+        </ul>
+        <div class="stack-chips">
+          <span class="chip">Azure App Service</span><span class="chip">Application Insights</span><span class="chip">SQL Server</span>
+        </div>
+      </div>
+
+      <div class="project reveal">
+        <div class="project-top">
+          <div class="project-title">XR-Messaging</div>
+          <div class="org-tag">OG Healthcare</div>
+        </div>
+        <div class="project-role">DevOps Engineer</div>
+        <div class="project-desc">Real-time messaging application built on WebSocket technology.</div>
+        <ul>
+          <li>Support deployment and configuration on Azure App Service using GitHub Actions.</li>
+          <li>Support WebSocket-based real-time communication; monitor via Application Insights.</li>
+          <li>Troubleshoot deployment, runtime, and connectivity issues.</li>
+        </ul>
+        <div class="stack-chips">
+          <span class="chip">WebSocket</span><span class="chip">Azure App Service</span>
+        </div>
+      </div>
+
+      <div class="project reveal">
+        <div class="project-top">
+          <div class="project-title">JioGames</div>
+          <div class="org-tag">VVM Soft Solutions</div>
+        </div>
+        <div class="project-role">Software Developer</div>
+        <div class="project-desc">Gaming services for JioSIM feature-phone and Android users over a managed LTE environment, with a load-testing framework for the gaming server.</div>
+        <ul>
+          <li>Built APIs with Django REST Framework and an admin panel for the testing tool.</li>
+          <li>Used Locust to simulate subscriber requests and run performance tests.</li>
+          <li>Optimized code for scalability, maintainability, and readability.</li>
+        </ul>
+        <div class="stack-chips">
+          <span class="chip">Django</span><span class="chip">DRF</span><span class="chip">Locust</span>
+        </div>
+      </div>
+
+      <div class="project reveal">
+        <div class="project-top">
+          <div class="project-title">E-Commerce Web Application</div>
+          <div class="org-tag">VVM Soft Solutions</div>
+        </div>
+        <div class="project-role">Software Developer</div>
+        <div class="project-desc">Marketplace for physical goods, services, and digital products, including order processing and payments.</div>
+        <ul>
+          <li>Designed web application functionality and REST APIs with Python and Django.</li>
+          <li>Worked with MySQL queries, Python database connectivity, and Django ORM.</li>
+          <li>Integrated Stripe Payment Gateway; fixed bugs and shipped enhancements.</li>
+        </ul>
+        <div class="stack-chips">
+          <span class="chip">Django</span><span class="chip">MySQL</span><span class="chip">Stripe</span>
+        </div>
+      </div>
 
     </div>
-    <!---main container end---->
-    <!----style switcher start-->
-    <div class="style-switcher">
-        <div class="style-switcher-taggler s-icon">
-            <i class="fas fa-cog fa-spin"></i>
+  </section>
+
+  <section id="stack">
+    <div class="section-head reveal">
+      <div class="section-head-left">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24">
+            <polyline class="icon-float" points="3,7 12,3 21,7 12,11 3,7"/>
+            <polyline class="icon-float d2" points="3,12 12,16 21,12"/>
+            <polyline class="icon-float d3" points="3,17 12,21 21,17"/>
+          </svg>
         </div>
-        <div class="day-night s-icon">
-            <i class="fas fa-moon"></i>
-        </div>
-        <h4>Theme colors</h4>
-        <div class="colors">
-            <span class="color-1" onclick="setActiveStyle('color-1')"></span>
-            <span class="color-2" onclick="setActiveStyle('color-2')"></span>
-            <span class="color-3" onclick="setActiveStyle('color-3')"></span>
-            <span class="color-4" onclick="setActiveStyle('color-4')"></span>
-            <span class="color-5" onclick="setActiveStyle('color-5')"></span>
-        </div>
+        <span class="section-num">04</span><h2>Technical stack</h2>
+      </div>
+      <svg class="section-visual" width="140" height="86" viewBox="0 0 140 86" fill="none">
+        <rect class="layer-glow" x="25" y="16" width="90" height="16" rx="4" fill="var(--panel-solid)" stroke="var(--accent-2)" stroke-width="1.6"/>
+        <rect class="layer-glow d2" x="25" y="36" width="90" height="16" rx="4" fill="var(--panel-solid)" stroke="var(--accent)" stroke-width="1.6"/>
+        <rect class="layer-glow d3" x="25" y="56" width="90" height="16" rx="4" fill="var(--panel-solid)" stroke="var(--line-2)" stroke-width="1.6"/>
+      </svg>
     </div>
-    <!----style switcher end-->
-    <!---	<h5>Laboratory Admin Dashboard</h5>
-		<div class="img-container">
-			<img src="images/lab-dash.jpg">
-		</div>
+    <div class="stack-card-grid reveal">
+      <div class="stack-card" style="--card-accent: var(--accent-2)">
+        <div class="stack-card-head"><span class="stack-card-title">Languages</span><span class="stack-card-count">1</span></div>
+        <div class="stack-chips"><span class="chip">Python</span></div>
+      </div>
+      <div class="stack-card" style="--card-accent: var(--accent)">
+        <div class="stack-card-head"><span class="stack-card-title">Backend</span><span class="stack-card-count">4</span></div>
+        <div class="stack-chips"><span class="chip">Django</span><span class="chip">Django REST Framework</span><span class="chip">REST APIs</span><span class="chip">Django ORM</span></div>
+      </div>
+      <div class="stack-card" style="--card-accent: var(--accent-2)">
+        <div class="stack-card-head"><span class="stack-card-title">Cloud & DevOps</span><span class="stack-card-count">6</span></div>
+        <div class="stack-chips"><span class="chip">Azure</span><span class="chip">Azure App Service</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span><span class="chip">Application Insights</span><span class="chip">Managed Identity</span></div>
+      </div>
+      <div class="stack-card" style="--card-accent: var(--accent)">
+        <div class="stack-card-head"><span class="stack-card-title">Databases</span><span class="stack-card-count">2</span></div>
+        <div class="stack-chips"><span class="chip">SQL Server</span><span class="chip">MySQL</span></div>
+      </div>
+      <div class="stack-card" style="--card-accent: var(--accent-2)">
+        <div class="stack-card-head"><span class="stack-card-title">Tools</span><span class="stack-card-count">6</span></div>
+        <div class="stack-chips"><span class="chip">Git</span><span class="chip">JIRA</span><span class="chip">Postman</span><span class="chip">Linux</span><span class="chip">Kudu</span><span class="chip">Log Stream</span></div>
+      </div>
+      <div class="stack-card" style="--card-accent: var(--accent)">
+        <div class="stack-card-head"><span class="stack-card-title">Others</span><span class="stack-card-count">5</span></div>
+        <div class="stack-chips"><span class="chip">Celery</span><span class="chip">Redis</span><span class="chip">Locust</span><span class="chip">WebSocket</span><span class="chip">Stripe</span></div>
+      </div>
+      <div class="stack-card" style="--card-accent: var(--accent-2)">
+        <div class="stack-card-head"><span class="stack-card-title">AI Tools</span><span class="stack-card-count">2</span></div>
+        <div class="stack-chips"><span class="chip">ChatGPT</span><span class="chip">Claude</span></div>
+      </div>
+      <div class="stack-card" style="--card-accent: var(--accent)">
+        <div class="stack-card-head"><span class="stack-card-title">Methodology</span><span class="stack-card-count">2</span></div>
+        <div class="stack-chips"><span class="chip">Agile</span><span class="chip">Scrum</span></div>
+      </div>
+    </div>
+  </section>
 
-		<h6>Sample ID Form</h5>
-		<div class="img-container">
-			<img src="images/sample-form.jpg">
-		</div>
+  <section id="ai">
+    <div class="section-head reveal">
+      <div class="section-head-left">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" class="icon-sparkle"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg>
+        </div>
+        <span class="section-num">05</span><h2>AI-assisted development</h2>
+      </div>
+      <svg class="section-visual" width="150" height="86" viewBox="0 0 150 86" fill="none">
+        <line x1="30" y1="43" x2="75" y2="20" stroke="var(--line-2)"/>
+        <line x1="30" y1="43" x2="75" y2="66" stroke="var(--line-2)"/>
+        <line x1="75" y1="20" x2="120" y2="43" stroke="var(--line-2)"/>
+        <line x1="75" y1="66" x2="120" y2="43" stroke="var(--line-2)"/>
+        <line x1="75" y1="20" x2="75" y2="66" stroke="var(--line-2)"/>
+        <circle class="node-pulse" cx="30" cy="43" r="4" fill="var(--accent)"/>
+        <circle class="node-pulse d2" cx="75" cy="20" r="4" fill="var(--accent-2)"/>
+        <circle class="node-pulse d3" cx="75" cy="66" r="4" fill="var(--accent-2)"/>
+        <circle class="node-pulse d4" cx="120" cy="43" r="5" fill="var(--accent)"/>
+      </svg>
+    </div>
+    <div class="ai-panel reveal">
+      <div class="stack-chips"><span class="chip">ChatGPT</span><span class="chip">Claude</span></div>
+      <ul>
+        <li>Use ChatGPT and Claude for code analysis, debugging, refactoring, optimization, documentation, and technical research.</li>
+        <li>Follow secure AI usage practices — masking organizational secrets and sensitive information before using AI tools.</li>
+        <li>Use sanitized code snippets and non-sensitive sample data when seeking AI assistance.</li>
+        <li>Review and validate AI-generated code for security, correctness, performance, and coding standards before implementation.</li>
+      </ul>
+    </div>
+  </section>
 
-		<h5>Results Input Fields</h5>
-		<div class="img-container">
-			<img src="images/results.jpg">
-		</div>
+  <footer id="contact">
+    <div class="cta-card reveal">
+      <h3>Let's build something reliable together</h3>
+      <p>Open to Backend Developer and DevOps Engineer roles — reach out directly.</p>
+      <div class="cta-links">
+        <a class="cta-btn" href="mailto:roopanareppa@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+          roopanareppa@gmail.com
+        </a>
+        <a class="cta-btn ghost" href="tel:+917892704447">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.7 2z"/></svg>
+          +91 7892704447
+        </a>
+        <a class="cta-btn ghost" href="https://linkedin.com/in/roopa-nareppa-79a8b7202" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="foot-meta">
+      <span>Bachelor of Science (B.Sc.) — Bangalore University, 2016–2019</span>
+      <span>Bangalore, India</span>
+    </div>
+  </footer>
 
-		<h5>PDF Report (Automaticly Generated)</h5>
-		<div class="img-container">
-			<img src="images/pdf-report.jpg">
-		</div>
+</div>
 
-		<h5>Customer Dashboard</h5>
-		<div class="img-container">
-			<img src="images/customer-dash.jpg">
-		</div>-->
+<div class="theme-switch" role="group" aria-label="Choose theme">
+  <div class="theme-switch-label">theme</div>
+  <div class="theme-switch-row">
+    <button type="button" data-theme-btn="signal">Signal</button>
+    <button type="button" data-theme-btn="daylight">Daylight</button>
+  </div>
+  <div class="theme-switch-row">
+    <button type="button" data-theme-btn="terminal">Terminal</button>
+    <button type="button" data-theme-btn="violet">Violet</button>
+  </div>
+</div>
 
-    <!----Js files------>
-   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" referrerpolicy="no-referrer"></script>-->
-    <script src="js/script.js"></script>
-    <script src="js/style-switcher.js"></script>
+<script>
+(function(){
+  var THEMES = ['signal','daylight','terminal','violet'];
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('[data-theme-btn]');
+
+  function setActiveButton(theme){
+    buttons.forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-theme-btn') === theme);
+    });
+  }
+  function applyTheme(theme, persist){
+    if (THEMES.indexOf(theme) === -1) theme = 'signal';
+    root.setAttribute('data-theme', theme);
+    setActiveButton(theme);
+    if (persist){ try { localStorage.setItem('roopa-portfolio-theme', theme); } catch(e){} }
+  }
+  var initial = 'signal';
+  try {
+    var saved = localStorage.getItem('roopa-portfolio-theme');
+    if (saved && THEMES.indexOf(saved) !== -1){ initial = saved; }
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches){ initial = 'daylight'; }
+  } catch(e){}
+  applyTheme(initial, false);
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ applyTheme(b.getAttribute('data-theme-btn'), true); });
+  });
+
+  // Scroll-spy active nav link
+  var navLinks = document.querySelectorAll('.pillnav a[data-nav]');
+  var sections = Array.prototype.map.call(navLinks, function(l){
+    return document.querySelector(l.getAttribute('href'));
+  });
+  function updateNav(){
+    var pos = window.scrollY + 140;
+    var current = sections[0];
+    sections.forEach(function(s){ if (s && s.offsetTop <= pos) current = s; });
+    navLinks.forEach(function(l){
+      l.classList.toggle('active', current && l.getAttribute('href') === '#' + current.id);
+    });
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
 </body>
 </html>
